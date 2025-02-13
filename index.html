@@ -125,24 +125,24 @@
     </div>
 
     <!-- كود التقويم -->
-    <script>
-        // إظهار التاريخ الميلادي والهجري
-  window.onload = function () {
-            const today = new Date();
-            const gregorianDate = today.toLocaleDateString('ar-EG', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
+<script>
+    // إظهار التاريخ الميلادي والهجري
+    window.onload = function () {
+        const today = new Date();
+        const gregorianDate = today.toLocaleDateString('ar-EG', { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' });
 
-            // حساب التاريخ الهجري
-            const hijriDate = new Intl.DateTimeFormat('ar-SA', {
-                calendar: 'islamic',
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            }).format(today);
+        // حساب التاريخ الهجري
+        const hijriDate = new Intl.DateTimeFormat('ar-SA', {
+            calendar: 'islamic',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        }).format(today);
 
-            document.getElementById('calendar').innerHTML = 
-                📅 التاريخ الميلادي: ${gregorianDate} <br> 🕌 التاريخ الهجري: ${hijriDate};
-        }
-    </script>
+        document.getElementById('calendar').innerHTML = 
+            `📅 التاريخ الميلادي: ${gregorianDate} <br> 🕌 التاريخ الهجري: ${hijriDate}`;
+    }
+</script>
 
 </body>
 </html>
