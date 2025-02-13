@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسبيح فاطمة الزهراء (ع)</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #1e1e2f, #2d2d44);
+            color: #fff;
+            font-family: 'Tajawal', sans-serif;
+            text-align: center;
+            padding-top: 50px;
+        }
+        h2 {
+            color: #f5b921;
+        }
+        .counter {
+            font-size: 3em;
+            margin: 20px 0;
+        }
+        .btn {
+            padding: 15px 30px;
+            margin: 10px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: 0.3s;
+            color: #fff;
+        }
+        .btn:hover {
+            opacity: 0.8;
+        }
+        .btn-green { background-color: #28a745; }
+        .btn-blue { background-color: #007bff; }
+        .btn-red { background-color: #dc3545; }
+        .back-btn {
+            margin-top: 40px;
+            display: inline-block;
+            text-decoration: none;
+            color: #fff;
+            background-color: #f5b921;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 1.2em;
+            transition: background 0.3s;
+        }
+        .back-btn:hover {
+            background-color: #d89d1b;
+        }
+        .notes {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: #f5b921;
+        }
+        .calendar {
+            margin-top: 30px;
+            font-size: 1.2em;
+            color: #fff;
+        }
+        footer {
+            margin-top: 50px;
+            background-color: #1e1e2f;
+            color: #fff;
+            padding: 15px 0;
+            font-size: 1.1em;
+        }
+        footer a {
+            color: #f5b921;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>🌿 تسبيح فاطمة الزهراء (ع)</h2>
+    <div class="counter" id="counter">0</div>
+    <div id="message"></div>
+    <button class="btn btn-red" id="takbeerBtn" onclick="count('الله أكبر', 34)">الله أكبر (34)</button>
+    <button class="btn btn-green" id="subhanAllahBtn" onclick="subhanAllah()" style="display: none;">سبحان الله (33)</button>
+    <button class="btn btn-blue" id="alhamdulillahBtn" onclick="alhamdulillah()" style="display: none;">الحمد لله (34)</button>
+
+    <div>
+        <a class="back-btn" href="tasbeeh.html">⬅️ الرجوع</a>
+    </div>
+
+    <div class="notes">
+        <p>فائدة التسبيح: التسبيح يذهب السيئات ويزيد في الأجر. بركة التسبيح تفتح أبواب الرحمة.</p>
+    </div>
+
+    <div class="calendar" id="calendar">
+        <p id="hijriDate"></p>
+        <p id="gregorianDate"></p>
+    </div>
+
+    <footer>
+        <p>حقوق النشر &copy; <a href="#">موقع تسبيح فاطمة الزهراء (ع)</a> 2025</p>
+    </footer>
+
+    <script>
+        let takbeerCount = 0;
+        let subhanAllahCount = 0;
+        let alhamdulillahCount = 0;
+
+        function count(phrase, limit) {
+            if (phrase === 'الله أكبر' && takbeerCount < limit) {
+                takbeerCount++;
+                document.getElementById('counter').innerText = takbeerCount;
+            }
+            
+            if (takbeerCount === 34) {
+                // اهتزاز الجهاز بعد إتمام "الله أكبر"
+                vibrate();
+                document.getElementById('message').innerText = "الله أكبر اكتمال، الآن سبحان الله";
+                document.getElementById('takbeerBtn').style.display = 'none';  // إخفاء زر "الله أكبر"
+                document.getElementById('subhanAllahBtn').style.display = 'inline-block';  // إظهار زر "سبحان الله"
+                document.getElementById('counter').innerText = 0;  // تصفير العداد
+                takbeerCount = 0;  // تصفير عداد "الله أكبر"
+            }
+        }
+        function subhanAllah() {
+            if (subhanAllahCount < 33) {
+                subhanAllahCount++;
+                document.getElementById('counter').innerText = subhanAllahCount;
+            }
+            
+            if (subhanAllahCount === 33) {
+                // اهتزاز الجهاز بعد إتمام "سبحان الله"
+                vibrate();
+                document.getElementById('message').innerText = "سبحان الله اكتمال، الآن الحمد لله";
+                document.getElementById('subhanAllahBtn').style.display = 'none';  // إخفاء زر "سبحان الله"
+                document.getElementById('alhamdulillahBtn').style.display = 'inline-block';  // إظهار زر "الحمد لله"
+                document.getElementById('counter').innerText = 0;  // تصفير العداد
+                subhanAllahCount = 0;  // تصفير عداد "سبحان الله"
+            }
+        }
+
+        function alhamdulillah() {
+            if (alhamdulillahCount < 34) {
+                alhamdulillahCount++;
+                document.getElementById('counter').innerText = alhamdulillahCount;
+            }
+
+            if (alhamdulillahCount === 34) {
+                // اهتزاز الجهاز بعد إتمام "الحمد لله"
+                vibrate();
+                document.getElementById('message').innerText = "تم اكتمال التسبيح بارك الله بيك";
+                document.getElementById('alhamdulillahBtn').style.display = 'none';  // إخفاء زر "الحمد لله"
+                document.getElementById('counter').innerText = 0;  // تصفير العداد
+                alhamdulillahCount = 0;  // تصفير عداد "الحمد لله"
+            }
+        }
+
+        // وظيفة اهتزاز الجهاز
+        function vibrate() {
+            if (navigator.vibrate) {
+                navigator.vibrate(200); // اهتزاز لمدة 200 ملي ثانية
+            }
+        }
+
+        // جلب التاريخ الميلادي والهجري
+        function updateCalendar() {
+            let today = new Date();
+            let gregorianDate = today.toLocaleDateString('en-GB'); // التاريخ الميلادي
+            let hijriDate = new Date().toLocaleDateString('ar-SA-u-ca-islamic'); // التاريخ الهجري
+
+            document.getElementById('gregorianDate').innerText = "التاريخ الميلادي: " + gregorianDate;
+            document.getElementById('hijriDate').innerText = "التاريخ الهجري: " + hijriDate;
+        }
+
+        // تحديث التقويم عند تحميل الصفحة
+        window.onload = updateCalendar;
+
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>التسبيح المفتوح</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #1e1e2f, #2d2d44);
+            color: #fff;
+            font-family: 'Tajawal', sans-serif;
+            text-align: center;
+            padding-top: 50px;
+        }
+        h2 { color: #f5b921; }
+        .counter { font-size: 3em; margin: 20px 0; }
+        .btn {
+            padding: 15px 30px;
+            margin: 10px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: 0.3s;
+            color: #fff;
+            background-color: #007bff;
+        }
+        .btn:hover { background-color: #0056b3; }
+        .back-btn {
+            margin-top: 40px;
+            display: inline-block;
+            text-decoration: none;
+            color: #fff;
+            background-color: #f5b921;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 1.2em;
+            transition: background 0.3s;
+        }
+        .back-btn:hover {
+            background-color: #d89d1b;
+        }
+        .input-field {
+            margin: 15px 0;
+            padding: 12px 18px;
+            font-size: 1.2em;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            background-color: #2e2e47;
+            color: #fff;
+            width: 100%;
+            max-width: 300px;
+            transition: all 0.3s;
+        }
+        .input-field:focus {
+            border-color: #f5b921;
+            background-color: #3b3b56;
+            outline: none;
+        }
+        .message {
+            color: #28a745;
+            font-size: 1.5em;
+            margin-top: 20px;
+        }
+       
+        .calendar {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+        .calendar span {
+            display: block;
+            margin-top: 5px;
+        }
+        footer {
+            margin-top: 50px;
+            background-color: #1e1e2f;
+            color: #fff;
+            padding: 15px 0;
+            font-size: 1.1em;
+        }
+        footer a {
+            color: #f5b921;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>🔢 التسبيح المفتوح</h2>
+    
+    <div id="inputSection">
+        <label for="tasbeehName" style="font-size: 1.2em;">اسم التسبيح:</label>
+        <input type="text" id="tasbeehName" class="input-field" placeholder="أدخل اسم التسبيح" required>
+        
+        <label for="tasbeehCount" style="font-size: 1.2em;">عدد التسبيحات المطلوب:</label>
+        <input type="number" id="tasbeehCount" class="input-field" placeholder="أدخل عدد التسبيحات" required>
+        
+        <button class="btn" onclick="startTasbeeh()">موافق</button>
+    </div>
+
+    <div id="tasbeehSection" style="display:none;">
+        <h3 id="tasbeehTitle">التسبيح: <span id="tasbeehDisplayName"></span></h3>
+        <div class="counter" id="openCounter">0</div>
+        <button class="btn" onclick="openTasbeeh()">تسبيح</button>
+        <button class="btn" style="background-color:#dc3545;" onclick="resetOpenTasbeeh()">إعادة تعيين</button>
+    </div>
+
+    <div class="message" id="completionMessage" style="display:none;"></div>
+
+    <div>
+        <a class="back-btn" href="tasbeeh.html">⬅️ الرجوع</a>
+    </div>
+
+    <!-- التقويم والهجري -->
+    <div class="calendar">
+        <span id="gregorianDate"></span>
+        <span id="hijriDate"></span>
+    </div>
+
+    <footer>
+        <p>حقوق النشر &copy; <a href="#">موقع تسبيح فاطمة الزهراء (ع)</a> 2025</p>
+    </footer>
+
+    <script>
+        let openCount = 0;
+        let targetCount = 0;
+        let tasbeehName = "";
+
+        function startTasbeeh() {
+            tasbeehName = document.getElementById('tasbeehName').value.trim();
+            targetCount = parseInt(document.getElementById('tasbeehCount').value);
+
+            if (!tasbeehName || isNaN(targetCount) || targetCount <= 0) {
+                alert("يرجى إدخال اسم التسبيح وعدد صحيح للتسبيحات");
+                return;
+            }
+
+            // إخفاء حقول الإدخال
+            document.getElementById('inputSection').style.display = 'none';
+
+            // إظهار واجهة التسبيح
+            document.getElementById('tasbeehSection').style.display = 'block';
+            document.getElementById('tasbeehDisplayName').innerText = tasbeehName;
+        }
+
+        function openTasbeeh() {
+            openCount++;
+            document.getElementById('openCounter').innerText = openCount;
+
+            if (openCount >= targetCount) {
+                document.getElementById('completionMessage').innerText = `تم اكتمال ${openCount} تسبيحاتك بارك الله فيك`;
+                document.getElementById('completionMessage').style.display = 'block';
+                document.querySelector('button[onclick="openTasbeeh()"]').disabled = true;
+            }
+        }
+
+        function resetOpenTasbeeh() {
+            openCount = 0;
+            document.getElementById('openCounter').innerText = openCount;
+            document.getElementById('completionMessage').style.display = 'none';
+            document.querySelector('button[onclick="openTasbeeh()"]').disabled = false;
+
+            // إعادة إظهار حقول الإدخال
+            document.getElementById('inputSection').style.display = 'block';
+            document.getElementById('tasbeehName').value = '';
+            document.getElementById('tasbeehCount').value = '';
+            document.getElementById('tasbeehSection').style.display = 'none';
+        }
+
+        // عرض التاريخ الميلادي والهجري
+        function updateDates() {
+            const gregorian = new Date();
+            const hijri = new Date(gregorian.toLocaleDateString('en-US', { year: 'numeric', month: 'numeric', day: 'numeric' }));
+
+            const gregorianDate = `${gregorian.toLocaleDateString('ar-EG')}`;
+            const hijriDate = `التاريخ الهجري: ${hijri.toLocaleDateString('ar-EG', { calendar: 'islamic' })}`;
+
+            document.getElementById('gregorianDate').innerText = `التاريخ الميلادي: ${gregorianDate}`;
+            document.getElementById('hijriDate').innerText = hijriDate;
+        }
+
+        // تحديث التاريخ عند تحميل الصفحة
+        window.onload = updateDates;
+    </script>
+
+</body>
+</html>

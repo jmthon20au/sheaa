@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الصلاة على محمد وآل محمد</title>
+    <style>
+        body {
+            background: linear-gradient(to bottom, #1e1e2f, #2d2d44);
+            color: #fff;
+            font-family: 'Tajawal', sans-serif;
+            text-align: center;
+            padding-top: 50px;
+        }
+        h2 { color: #f5b921; }
+        .counter { font-size: 3em; margin: 20px 0; }
+        .btn {
+            padding: 15px 30px;
+            margin: 10px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.2em;
+            cursor: pointer;
+            transition: 0.3s;
+            color: #fff;
+            background-color: #28a745;
+        }
+        .btn:hover { background-color: #1d7b35; }
+        .back-btn {
+            margin-top: 40px;
+            display: inline-block;
+            text-decoration: none;
+            color: #fff;
+            background-color: #f5b921;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-size: 1.2em;
+            transition: background 0.3s;
+        }
+        .back-btn:hover {
+            background-color: #d89d1b;
+        }
+        footer {
+            margin-top: 50px;
+            background-color: #1e1e2f;
+            color: #fff;
+            padding: 15px 0;
+            font-size: 1.1em;
+        }
+        footer a {
+            color: #f5b921;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        .calendar {
+            margin-top: 20px;
+            font-size: 1.2em;
+        }
+        .calendar span {
+            display: block;
+            margin-top: 5px;
+        }
+    </style>
+</head>
+<body>
+
+    <h2>🌸 الصلاة على محمد وآل محمد</h2>
+    <div class="counter" id="salawatCounter">0</div>
+    <button class="btn" onclick="countSalawat()">اللهم صلِّ على محمد وآل محمد</button>
+    <button class="btn" style="background-color:#dc3545;" onclick="resetSalawat()">إعادة تعيين</button>
+
+    <div>
+        <a class="back-btn" href="tasbeeh.html">⬅️ الرجوع</a>
+    </div>
+    <div class="calendar">
+        <span id="gregorianDate"></span>
+        <span id="hijriDate"></span>
+    </div>
+    <footer>
+        <p>حقوق النشر &copy; <a href="#">موقع تسبيح فاطمة الزهراء (ع)</a> 2025</p>
+    </footer>
+    <script>
+        let salawatCount = 0;
+        function countSalawat() {
+            salawatCount++;
+            document.getElementById('salawatCounter').innerText = salawatCount;
+        }
+        function resetSalawat() {
+            salawatCount = 0;
+            document.getElementById('salawatCounter').innerText = salawatCount;
+        }
+        function updateDates() {
+            const gregorian = new Date();
+            const hijri = new Date(gregorian.toLocaleDateString('en-US', { year: 'numeric', month: 'numeric', day: 'numeric' }));
+
+            const gregorianDate = `${gregorian.toLocaleDateString('ar-EG')}`;
+            const hijriDate = `التاريخ الهجري: ${hijri.toLocaleDateString('ar-EG', { calendar: 'islamic' })}`;
+
+            document.getElementById('gregorianDate').innerText = `التاريخ الميلادي: ${gregorianDate}`;
+            document.getElementById('hijriDate').innerText = hijriDate;
+        }
+
+        // تحديث التاريخ عند تحميل الصفحة
+        window.onload = updateDates;
+    </script>
+
+</body>
+</html>
