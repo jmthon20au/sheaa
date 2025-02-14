@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>صفحة المطور - علي الطائي</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background: linear-gradient(135deg, #1e1e2f, #2d2d44);
+            color: #fff;
+            font-family: 'Tajawal', sans-serif;
+            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .profile-box {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid #c79924;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 6px 15px rgba(226, 9, 9, 0.4);
+            max-width: 400px;
+            margin-top: 50px;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            animation: fadeIn 1.5s ease;
+        }
+
+        .profile-box:hover {
+            transform: translateY(-px);
+            box-shadow: 0 10px 20px rgba(16, 168, 135, 0.5);
+        }
+
+        .profile-box img {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            margin-bottom: 20px;
+            border: 3px solid #f5b921;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .profile-box img:hover {
+            transform: rotate(15deg) scale(1.1);
+        }
+
+        .profile-box h2 {
+            color: #f5b921;
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+
+        .typewriter {
+            font-size: 1.2em;
+            margin-bottom: 20px;
+            white-space: nowrap;
+            overflow: hidden;
+            border-right: 3px solid #f5b921;
+            animation: typing 4s steps(30) 1, blink 1s infinite 4s;
+        }
+
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        @keyframes blink {
+            0%, 100% { border-color: transparent }
+            50% { border-color: #f5b921 }
+        }
+
+        .profile-box p {
+            font-size: 1.1em;
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .social-links {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .social-links a {
+            color: #fff;
+            font-size: 1.6em;
+            text-decoration: none;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: #f5b921;
+            transform: translateY(-5px);
+        }
+
+        .back-btn {
+            margin-top: 30px;
+            text-decoration: none;
+            color: #fff;
+            background: linear-gradient(45deg, #f5b921, #e67e22);
+            padding: 12px 25px;
+            border-radius: 80px;
+            font-size: 1.2em;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            display: inline-block;
+            margin-bottom: 30px;
+        }
+
+        .back-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 5px 105px rgba(108, 137, 218, 0.4);
+        }
+
+        .calendar {
+            margin-top: 25px;
+            font-size: 1.1em;
+        }
+
+        .calendar span {
+            display: block;
+            margin-top: 5px;
+        }
+
+        .clock {
+            margin-top: 15px;
+            font-size: 2em;
+            color: #0bb482;
+            letter-spacing: 2px;
+            border: 2px solid #21f580;
+            padding: 10px 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(247, 245, 243, 0.7);
+            background: rgba(0, 0, 0, 0.3);
+            display: inline-block;
+            margin-top: 30px;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 20px rgba(245, 185, 33, 0.7); }
+            50% { box-shadow: 0 0 40px rgba(245, 185, 33, 0.5); }
+            100% { box-shadow: 0 0 20px rgba(245, 185, 33, 0.7); }
+        }
+
+        footer {
+            margin-top: auto;
+            width: 100%;
+            background-color: #1e1e2f;
+            color: #fff;
+            padding: 10px 0;
+            font-size: 1em;
+            border-top: 2px solid #f5b921;
+            text-align: center;
+        }
+
+        footer a {
+            color: #f5b921;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        @keyframes fadeIn {
+            from {opacity: 0; transform: translateY(20px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+    </style>
+</head>
+<body>
+
+    <div class="profile-box">
+        <img src="logo.webp" alt="شعار الموقع">
+        <h2>علي الطائي - Ali Altaee</h2>
+        <div class="typewriter">مطور ويب وتطبيقات - يسعى لتحقيق حلمه</div>
+        <p>
+            مطور من العراق، يدرس السادس الإعدادي، ويطمح إلى الاحتراف في برمجة المواقع والتطبيقات والتصميم.
+        </p>
+        <div class="social-links">
+            <a href="https://t.me/altaee_z" target="_self" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+            <a href="https://www.facebook.com/ali0altaee" target="_self" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com/g_30_j" target="_self" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.ali-altaee.free.nf" target="_self" aria-label="Website"><i class="fas fa-globe"></i></a>
+        </div>
+    </div>
+
+    <a href="index.html" class="back-btn">رجوع</a>
+
+    <div class="calendar">
+        <span id="gregorianDate"></span>
+        <span id="hijriDate"></span>
+    </div>
+
+    <div class="clock" id="clock"></div>
+
+    <footer>
+        <p>حقوق النشر &copy; <a href="https://www.sheiaa.free.nf">موقع نهج الشيعة</a> 2025 - تم الإنشاء في 2025/2/13 - الخميس</p>
+    </footer>
+
+    <script>
+        // تحديث التاريخ الميلادي والهجري
+        function updateDates() {
+            const gregorian = new Date();
+            const options = { year: 'numeric', month: 'long', day: 'numeric' };
+            const gregorianDate = `التاريخ الميلادي: ${gregorian.toLocaleDateString('ar-EG', options)}`;
+            const hijriDate = new Intl.DateTimeFormat('ar-EG-u-ca-islamic', options).format(gregorian);
+
+            document.getElementById('gregorianDate').innerText = gregorianDate;
+            document.getElementById('hijriDate').innerText = `التاريخ الهجري: ${hijriDate}`;
+        }
+
+        // تحديث الساعة الحية بنظام 12 ساعة
+        function updateClock() {
+            const now = new Date();
+            const options = { timeZone: 'Asia/Baghdad', hour: 'numeric', minute: 'numeric', second: 'numeric', hour12: true };
+            const time = now.toLocaleTimeString('ar-EG', options);
+            document.getElementById('clock').innerText = `🕒 ${time}`;
+        }
+
+        window.onload = () => {
+            updateDates();
+            setInterval(updateClock, 1000);
+        }
+    </script>
+
+</body>
+</html>
