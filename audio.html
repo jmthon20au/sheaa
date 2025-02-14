@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>الصوتيات - نهج الشيعة</title>
+    <style>
+        /* إعدادات الصفحة الأساسية */
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background: linear-gradient(to bottom, #1e1e2f, #2d2d44);
+            color: #fff;
+            font-family: 'Tajawal', sans-serif;
+            text-align: center;
+            overflow-x: hidden;
+        }
+
+        /* رأس الصفحة */
+        .header {
+            padding: 4px 2px;
+            border-bottom: 10px solid #444;
+            box-shadow: 0 20px 10px rgba(0,0,0,0.5);
+            background-color: #161625;
+            position: relative;
+        }
+
+        .header h1 {
+            animation: fadeDown 1s ease;
+        }
+
+        .section {
+            animation: fadeUp 1s ease forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeDown {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes fadeUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* الأقسام */
+        .sections {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 6px;
+            gap: 20px;
+        }
+
+        .section {
+            width: 280px;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid #f5b921;
+            border-radius: 40px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 1em;
+            transition: transform 0.4s, background 0.4s;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.4);
+            padding: 9px;
+            cursor: pointer;
+            backdrop-filter: blur(50px);
+        }
+
+        .section:hover {
+            transform: translateY(-10px) scale(1.05);
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .section audio {
+            margin-top: 2px;
+            width: 100%;
+            border-radius: 10px;
+            outline: none;
+        }
+
+        /* أزرار التحكم */
+        .controls {
+            margin-top: 30px;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .control-btn {
+            padding: 15px 25px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            background: linear-gradient(135deg, #f5b921, #ff751a);
+            color: #fff;
+            transition: transform 0.3s, background 0.3s;
+            min-width: 160px;
+            box-shadow: 0 5px 10px rgba(0,0,0,0.3);
+            text-align: center;
+        }
+
+        .control-btn:hover {
+            background: linear-gradient(135deg, #0081ff, #00c3ff);
+            transform: translateY(-5px);
+        }
+
+        .controls .control-btn:nth-child(3),
+        .controls .control-btn:nth-child(4) {
+            background: linear-gradient(135deg, #6c757d, #495057);
+        }
+
+        .controls .control-btn:nth-child(3):hover,
+        .controls .control-btn:nth-child(4):hover {
+            background: linear-gradient(135deg, #00c3ff, #0081ff);
+        }
+
+        /* زر الرجوع */
+        .back-btn {
+            margin-top: 40px;
+            text-decoration: none;
+            color: #fff;
+            background-color: #f5b921;
+            padding: 12px 25px;
+            border-radius: 80px;
+            font-size: 1.2em;
+            transition: background 0.3s;
+            display: inline-block;
+        }
+
+        .back-btn:hover {
+            background-color: #ff1515;
+            transform: scale(1.05);
+        }
+
+        /* تذييل الصفحة */
+        .footer {
+            margin-top: 60px;
+            padding: 20px;
+            border-top: 2px solid #444;
+            background-color: #161625;
+            color: #aaa;
+            font-size: 0.9em;
+            letter-spacing: 1px;
+        }
+
+        /* شاشة تحميل */
+        .loading-screen {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: #161625;
+            color: #f5b921;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 2.5em;
+            z-index: 9999;
+            transition: opacity 0.5s;
+            flex-direction: column;
+        }
+
+        .spinner {
+            border: 6px solid #444;
+            border-top: 6px solid #f5b921;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            animation: spin 1s linear infinite;
+            margin-bottom: 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg);}
+            100% { transform: rotate(360deg);}
+        }
+
+        #scrollTopBtn {
+            position: fixed;
+            bottom: 3px;
+            left: 280px;
+            padding: 10px 20px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 50%;
+            background-color: #6affa2;
+            color: #030705;
+            cursor: pointer;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            display: none;
+            transition: transform 0.3s;
+        }
+
+        #scrollTopBtn:hover {
+            transform: scale(1.1);
+        }
+        
+    .telegram-btn {
+        display: inline-block;
+        margin-top: 15px;
+        padding: 12px 25px;
+        border-radius: 80px;
+        font-size: 1.2em;
+        text-decoration: none;
+        color: #fff;
+        background: linear-gradient(135deg, #08c, #00aced);
+        transition: background 0.3s, transform 0.3s;
+    }
+
+    .telegram-btn:hover {
+        background: linear-gradient(135deg, #006aff, #00cfff);
+        transform: scale(1.05);
+    }
+
+    </style>
+</head>
+<body>
+    <!-- شاشة التحميل -->
+    <div class="loading-screen" id="loading">
+        <div class="spinner"></div>
+        <p>جاري تحميل الصفحة...</p>
+    </div>
+
+    <!-- رأس الصفحة -->
+    <div class="header">
+        <h1>🎵 الصوتيات</h1>
+    </div>
+
+    <!-- أزرار التحكم -->
+    <div class="controls">
+        <button class="control-btn" onclick="playAll()">▶️ تشغيل الكل</button>
+        <button class="control-btn" onclick="pauseAll()">⏸️ إيقاف الكل</button>
+        <button class="control-btn" onclick="muteAll()">🔇 كتم الكل</button>
+        <button class="control-btn" onclick="unmuteAll()">🔊 إلغاء الكتم</button>
+        <button class="control-btn" onclick="loopAll()">🔁 تكرار الكل</button>
+        <button class="control-btn" onclick="playPrev()">🔙 السابق</button>
+        <button class="control-btn" onclick="playNext()">🔜 التالي</button>
+        <button class="control-btn" onclick="setSleepTimer()">⏰ مؤقت النوم</button>
+    </div>
+
+    <!-- الأقسام -->
+    <div class="sections">
+        <div class="section">
+            <h3>الحب أنتَ و لولا</h3>
+            <audio controls>
+                <source src="10.mp3" type="audio/mp3">
+                متصفحك لا يدعم عنصر الصوت.
+            </audio>
+        </div>
+        <div class="section">
+            <h3>ما ماتت من مرض</h3>
+            <audio controls>
+                <source src="2.mp3" type="audio/mp3">
+                متصفحك لا يدعم عنصر الصوت.
+            </audio>
+        </div>
+        <div class="section">
+            <h3>زيارة عاشوراء</h3>
+            <audio controls>
+                <source src="3.mp3" type="audio/mp3">
+                متصفحك لا يدعم عنصر الصوت.
+            </audio>
+        </div>
+        <div class="section">
+            <h3>الوداع الوداع</h3>
+            <audio controls>
+                <source src="4.mp3" type="audio/mp3">
+                متصفحك لا يدعم عنصر الصوت.
+            </audio>
+        </div>
+        <div class="section">
+            <h3>رحلة </h3>
+            <audio controls>
+                <source src="5.mp3" type="audio/mp3">
+                متصفحك لا يدعم عنصر الصوت.
+            </audio>
+        </div>
+        <div class="section">
+            <h3>مثل طبع النسر طبعي </h3>
+            <audio controls>
+                <source src="6.mp3" type="audio/mp3">
+                متصفحك لا يدعم عنصر الصوت.
+            </audio>
+        </div>
+        <div class="section">
+            <h3>شرط الولاية</h3>
+            <audio controls>
+                <source src="7.mp3" type="audio/mp3">
+                متصفحك لا يدعم عنصر الصوت.
+            </audio>
+        </div>
+        <div class="section">
+            <h3>دعاء الفرج</h3>
+            <audio controls>
+                <source src="8.mp3" type="audio/mp3">
+                متصفحك لا يدعم عنصر الصوت.
+            </audio>
+        </div>
+        <div class="section">
+            <h3>مشهد حلم</h3>
+            <audio controls>
+                <source src="9.mp3" type="audio/mp3">
+                متصفحك لا يدعم عنصر الصوت.
+            </audio>
+        </div>
+    </div>
+<!-- زر الرجوع وزر قناة التلجرام -->
+<div style="margin-top: 20px;">
+    <a class="back-btn" href="index.html">⬅️ الرجوع للصفحة الرئيسية</a>
+</div>
+
+<!-- زر قناة التليجرام -->
+<div style="margin-top: 15px;">
+    <a class="telegram-btn" href="https://t.me/+WJn_Xof6aFNkMmEy" target="_self">
+        📲 قناة تلجرام
+    </a>
+</div>
+
+    <button id="scrollTopBtn" onclick="scrollToTop()">⬆️ للأعلى</button>
+
+<!-- تذييل الصفحة -->
+<div class="footer">
+    &copy; 2025 نهج الشيعة - جميع الحقوق محفوظة
+</div>
+
+    <!-- سكربت التحكم -->
+    <script>
+        // شاشة التحميل
+        window.addEventListener('load', () => {
+            const loading = document.getElementById('loading');
+            loading.style.opacity = '0';
+            setTimeout(() => loading.style.display = 'none', 500);
+        });
+
+        // التحكم بالصوتيات
+        const audios = document.querySelectorAll('audio');
+        let currentIndex = 0;
+
+        function playAll() {
+            audios.forEach(audio => audio.play());
+        }
+
+        function pauseAll() {
+            audios.forEach(audio => audio.pause());
+        }
+
+        function muteAll() {
+            audios.forEach(audio => audio.muted = true);
+        }
+
+        function unmuteAll() {
+            audios.forEach(audio => audio.muted = false);
+        }
+
+        function loopAll() {
+            audios.forEach(audio => {
+                audio.loop = !audio.loop;
+            });
+            alert('تم تفعيل/إلغاء التكرار لجميع الصوتيات');
+        }
+
+        function playNext() {
+            audios[currentIndex].pause();
+            currentIndex = (currentIndex + 1) % audios.length;
+            audios[currentIndex].play();
+        }
+
+        function playPrev() {
+            audios[currentIndex].pause();
+            currentIndex = (currentIndex - 1 + audios.length) % audios.length;
+            audios[currentIndex].play();
+        }
+
+        window.onscroll = () => {
+            document.getElementById('scrollTopBtn').style.display = window.scrollY > 300 ? 'block' : 'none';
+        };
+
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function setSleepTimer() {
+            const minutes = prompt('أدخل عدد الدقائق لإيقاف الصوتيات:');
+            const time = parseInt(minutes);
+            if (!isNaN(time) && time > 0) {
+                setTimeout(() => {
+                    pauseAll();
+                    alert('تم إيقاف الصوتيات بسبب انتهاء المؤقت.');
+                }, time * 60000);
+            } else {
+                alert('يرجى إدخال عدد دقائق صحيح!');
+            }
+        }
+    </script>
+</body>
+</html>
