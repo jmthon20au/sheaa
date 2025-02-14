@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نهج الشيعة - الدعم الفني</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background: linear-gradient(to bottom, #1e1e2f, #2d2d44);
+            color: #f3f1f1;
+            font-family: 'Tajawal', sans-serif;
+            text-align: center;
+            padding: 40px 5px;
+        }
+        h2 { color: #d8a82e; margin-bottom: 30px; font-size: 2em; font-weight: bold; }
+        .form-box {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid #c79924;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px auto;
+            width: 80%;
+            box-shadow: 0 4px 10px rgba(102, 82, 82, 0.3);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: right;
+        }
+        .form-box:hover {
+            transform: translateY(0px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.5);
+        }
+        .form-box label {
+            color: #f5b921;
+            font-weight: bold;
+            margin: 5px 50;
+            display: block;
+        }
+        .form-box input, .form-box textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0 20px;
+            border: 2px solid #f5b921;
+            border-radius: 20px;
+            box-sizing: border-box;
+            font-size: 1.2em;
+            direction: ltr;
+            color: #f0e6e6;
+            background-color: #2d2d44;
+            transition: all 0.3s ease;
+        }
+        .form-box input:focus, .form-box textarea:focus {
+            border-color: #17e655;
+            background-color: #333;
+            outline: none;
+        }
+        .form-box textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        .submit-btn {
+            background-color: #1bd2d8;
+            color: #000;
+            border: none;
+            padding: 12px 120px;
+            border-radius: 80px;
+            font-size: 1.5em;
+            cursor: pointer;
+            transition: background 0.3s;
+            margin-top: 20px;
+        }
+        .submit-btn:hover { background-color: #38da40; }
+        .back-btn {
+            margin-top: 40px;
+            text-decoration: none;
+            color: #f7f5f5;
+            background-color: #2872b8;
+            padding: 12px 120px;
+            border-radius: 80px;
+            font-size: 1.5em;
+            transition: background 0.3s;
+            display: inline-block;
+        }
+        .back-btn:hover { background-color: #17e655; }
+        .calendar {
+            margin-top: 30px;
+            font-size: 1.5em;
+        }
+        footer {
+            margin-top: 50px;
+            background-color: #1e1e2f;
+            color: #fff;
+            padding: 15px 0;
+            font-size: 1.1em;
+        }
+        footer a {
+            color: #f5b921;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+        .telegram-btn {
+        display: inline-block;
+        margin-top: 15px;
+        padding: 12px 25px;
+        border-radius: 80px;
+        font-size: 1.2em;
+        text-decoration: none;
+        color: #fff;
+        background: linear-gradient(135deg, #08c, #00aced);
+        transition: background 0.3s, transform 0.3s;
+    }
+
+    .telegram-btn:hover {
+        background: linear-gradient(135deg, #006aff, #00cfff);
+        transform: scale(1.05);
+    }
+    </style>
+</head>
+<body>
+
+    <h2>الدعم الفني - نهج الشيعة</h2>
+
+    <!-- نموذج إدخال البيانات -->
+    <div class="form-box">
+        <form id="contactForm">
+            <label for="name">الاسم          <span style="color:red;">*</span></label>
+            <input type="text" id="name" name="name" placeholder=" أدخل اسمك هنا" required>
+
+            <label for="username">اسم المستخدم تيليجرام</label>
+            <input type="text" id="username" name="username" placeholder="مثال: @username">
+
+            <label for="email">البريد الإلكتروني</label>
+            <input type="email" id="email" name="email" placeholder="example@mail.com">
+
+            <label for="message">الرسالة <span style="color:red;">*</span></label>
+            <textarea id="message" name="message" placeholder="أدخل رسالتك هنا اذا كانت فكرة او مشكلة ..............." required></textarea>
+
+            <button type="submit" class="submit-btn">إرسال</button>
+        </form>
+    </div>
+
+    <a href="ziyarat.html" class="back-btn">رجوع</a>
+
+    <div class="calendar">
+       <span id="gregorianDate"></span>
+       <span id="hijriDate"></span>
+    </div>
+    <div style="margin-top: 15px;">
+        <a class="telegram-btn" href="https://t.me/VF_VM" target="_self">
+            📲 قناة تلجرام
+        </a>
+    </div>
+    <footer>
+        <p>حقوق النشر &copy; <a href="#">موقع نهج الشيعة</a> 2025</p>
+    </footer>
+
+<script>
+    // تحديث التاريخ الميلادي والهجري
+    function updateDates() {
+        const gregorian = new Date();
+        const hijri = new Date(gregorian.toLocaleDateString('en-US', { year: 'numeric', month: 'numeric', day: 'numeric' }));
+
+        const gregorianDate = `التاريخ الميلادي: ${gregorian.toLocaleDateString('ar-EG')}`;
+        const hijriDate = `التاريخ الهجري: ${hijri.toLocaleDateString('ar-EG', { calendar: 'islamic' })}`;
+
+        document.getElementById('gregorianDate').innerText = gregorianDate;
+        document.getElementById('hijriDate').innerText = hijriDate;
+    }
+    window.onload = updateDates;
+
+    // إرسال البيانات إلى البوت
+    document.getElementById('contactForm').addEventListener('submit', async function (e) {
+        e.preventDefault();
+        const name = document.getElementById('name').value.trim();
+        const username = document.getElementById('username').value.trim() || "غير محدد";
+        const email = document.getElementById('email').value.trim() || "غير محدد";
+        const message = document.getElementById('message').value.trim();
+
+        if (!name || !message) {
+            alert('يرجى إدخال الاسم والرسالة!');
+            return;
+        }
+
+        // قراءة بيانات التوكن والـ chat_id من ملف JSON
+        const response = await fetch('send.json');
+        const config = await response.json();
+        const token = config.token;
+        const chatId = config.chat_id;
+
+        const text = `📬 *رسالة جديدة من موقع نهج الشيعة*:\n\n`
+                   + `👤 *الاسم:* ${name}\n`
+                   + `🔹 *تيليجرام:* ${username}\n`
+                   + `📧 *الإيميل:* ${email}\n`
+                   + `✉️ *الرسالة:* ${message}\n`
+                   + `📆 *التاريخ :* $${new Date().toLocaleString()} \n \n`
+                   + `✔ *رابط الموقع : www.shieaa.free.nf*`;
+
+        const url = `https://api.telegram.org/bot${token}/sendMessage`;
+        const data = {
+            chat_id: chatId,
+            text: text,
+            parse_mode: 'Markdown'
+        };
+
+        // إرسال الرسالة
+        try {
+            const res = await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data)
+            });
+            if (res.ok) {
+                alert('تم إرسال الرسالة بنجاح! انظم لفناة التلجرام لتعرف الاجاية و الشروحات @VM_VF');
+                document.getElementById('contactForm').reset();
+            } else {
+                alert('حدث خطأ أثناء الإرسال!');
+            }
+        } catch (error) {
+            alert('تعذر الاتصال بالبوت. تحقق من الاتصال!');
+        }
+    });
+</script>
+
+</body>
+</html>
