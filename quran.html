@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    
+     <link rel="icon" type="image/png" href="Quran.ico">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>نهج الشيعة - القرآن الكريم</title>
+        <!-- Meta tags for link preview -->
+    <meta name="description" content="قسم من موقع نهج الشيعة  يعرض صفحات  القرآن الكريم بجودة عالية HD مع فهرس السور ">
+    <meta property="og:title" content="نهج الشيعة  _ قسم القرآن الكريم 🕋">
+    <meta property="og:description" content="موقع نهج الشيعة يحتوي على أقسام للتسبيح، الأدعية، الزيارات، والأصوات مع التقويم الهجري والميلادي.">
+    <meta property="og:image" content="quran.ico">
+    <meta property="og:url" content="https://www.shieaa.free.nf">
+    <meta property="og:type" content="website">
+    <meta name="twitter:image" content="Quran.ico">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            direction: rtl;
+            text-align: center;
+            background-color: #f4f4f4;
+            padding: 2px;
+        }
+
+        .container {
+            padding: 5px;
+            max-width: 600px;
+            margin: 5px auto;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        input {
+            padding: 10px;
+            margin-bottom: 10px;
+            width: 100%;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+        }
+
+        button {
+            padding: 10px 20px;
+            border: none;
+            font-size: 1rem;
+            cursor: pointer;
+            border-radius: 50px;
+            margin: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .main-btn {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .main-btn:hover {
+            background-color: #8100c9;
+        }
+
+        .secondary-btn {
+            background-color: #2196F3;
+            color: white;
+        }
+
+        .secondary-btn:hover {
+            background-color: #2f00c9;
+        }
+
+        .controls {
+            margin-top: 20px;
+        }
+
+        #pageImageContainer {
+            margin-top: 20px;
+        }
+
+        .bottom-buttons {
+            margin-top: 30px;
+        }
+
+        .index-list {
+            display: none;
+            background-color:#908484;
+            border: 10px solid #55c1ff;
+            border-radius: 50px;
+            padding: 1px;
+            position: fixed;
+            top: 60%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            z-index: 999;
+            width: 50%;
+            max-height: 60%;
+            overflow-y: auto;
+            padding-bottom: 50px; /* Adding space for the close button */
+        }
+
+        .index-list ul {
+            list-style-type: none;
+            padding: 90;
+        }
+
+        .index-list li {
+            padding: 10px;
+            font-size: 1.2rem;
+            color: #333;
+            cursor: pointer;
+        }
+
+        .index-list li:hover {
+            background-color: #ffffff;
+        }
+.index-close {
+    background-color: #ff1515; /* شفافية */
+    color: white;
+    font-size: 1rem;
+    padding: 8px 22px;
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    position: sticky;
+    top: 10px;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.index-close::before {
+    content: "\2716"; /* رمز الإغلاق (×) */
+    font-size: 1.2rem;
+    margin-right: 8px;
+}
+
+        .index-close:hover {
+            background-color: #11c92c;
+        }
+
+        .index-popup {
+            position: relative;
+        }
+                .reset-btn {
+            background-color: #c94a00;
+            color: white;
+            font-size: 1rem;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+        .reset-btn:hover {
+            background-color: #fb8c00;
+        }
+        #pageImageContainer {
+    transition: opacity 0.5s ease;
+}
+        .note {
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 20px;
+            margin-bottom: 15px;
+            font-size: 18px;
+            position: relative;
+            text-align: right;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+        .note::before {
+            content: "✦";
+            color: #5c9f24;
+            font-size: 22px;
+            position: absolute;
+            right: 15px;
+            top: 15px;
+        }
+        .note:last-child {
+            margin-bottom: 0;
+        }
+                h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid #5c9f24;
+            display: inline-block;
+            padding-bottom: 8px;
+        }
+                .container {
+            
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.7);
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
+        }
+              .back-button {
+            background-color: #40a1ff; /* لون الخلفية */
+            color: white; /* لون النص */
+            border: none;
+            padding: 12px 25px;
+            font-size: 15px;
+            cursor: pointer;
+            border-radius: 80px;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px; /* المسافة بين الأيقونة والنص */
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        .back-button i {
+            font-size: 20px; /* حجم الأيقونة */
+        }
+
+        .back-button:hover {
+            background-color: #45a049; /* تغيير اللون عند التمرير */
+            transform: translateY(-2px); /* تأثير الرفع عند التمرير */
+        }
+
+        .back-button:active {
+            transform: translateY(0); /* إعادة الزر لمكانه عند الضغط */
+        }
+
+        .back-button:focus {
+            outline: none; /* إزالة حدود التركيز */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>قسم القرآن الكريم</h1>
+        <input type="number" id="pageNumber" placeholder="للبحث عن الصفحات قم بأدخال رقم الصفحة " />
+        <button class="main-btn" onclick="loadPage()">بحث عن الصفحة</button>
+
+        <div id="pageImageContainer"></div>
+
+        <div class="controls">
+            <button class="main-btn" onclick="navigatePage(-1)">الصفحة السابقة</button>
+            <button class="main-btn" onclick="navigatePage(1)">الصفحة التالية</button>
+        </div>
+
+        <div class="bottom-buttons">
+            <button class="secondary-btn" onclick="toggleIndex()">فهرس الصفحات</button>
+            <button class="reset-btn" onclick="resetPage()">إعادة تعيين الصفحات</button>
+        </div>
+            <button class="back-button" onclick="goToHome()">
+        <i class="fas fa-arrow-left"></i> العودة إلى الصفحة الرئيسية
+    </button>
+    </div>
+
+    <div id="indexList" class="index-list">
+        <button class="index-close" onclick="toggleIndex()">إغلاق الفهرس</button>
+<ul>
+<li onclick="goToPage(1, 'الفاتحة')">الفاتحة - 1</li>
+<li onclick="goToPage(2, 'البقرة')">البقرة - 2</li>
+<li onclick="goToPage(50, 'آل عمران')">آل عمران - 50</li>
+<li onclick="goToPage(77, 'النساء')">النساء - 77</li>
+<li onclick="goToPage(106, 'المائدة')">المائدة - 106</li>
+<li onclick="goToPage(128, 'الأنعام')">الأنعام - 128</li>
+<li onclick="goToPage(151, 'الأعراف')">الأعراف - 151</li>
+<li onclick="goToPage(177, 'الأنفال')">الأنفال - 177</li>
+<li onclick="goToPage(187, 'التوبة')">التوبة - 187</li>
+<li onclick="goToPage(221, 'يونس')">يونس - 221</li>
+<li onclick="goToPage(235, 'هود')">هود - 235</li>
+<li onclick="goToPage(249, 'يوسف')">يوسف - 249</li>
+<li onclick="goToPage(255, 'الرعد')">الرعد - 255</li>
+<li onclick="goToPage(262, 'إبراهيم')">إبراهيم - 262</li>
+<li onclick="goToPage(267, 'الحجر')">الحجر - 267</li>
+<li onclick="goToPage(272, 'النحل')">النحل - 272</li>
+<li onclick="goToPage(282, 'الإسراء')">الإسراء - 282</li>
+<li onclick="goToPage(293, 'الكهف')">الكهف - 293</li>
+<li onclick="goToPage(305, 'مريم')">مريم - 305</li>
+<li onclick="goToPage(312, 'طه')">طه - 312</li>
+<li onclick="goToPage(322, 'الأنبياء')">الأنبياء - 322</li>
+<li onclick="goToPage(332, 'الحج')">الحج - 332</li>
+<li onclick="goToPage(342, 'المؤمنون')">المؤمنون - 342</li>
+<li onclick="goToPage(350, 'النور')">النور - 350</li>
+<li onclick="goToPage(359, 'الفرقان')">الفرقان - 359</li>
+<li onclick="goToPage(367, 'الشعراء')">الشعراء - 367</li>
+<li onclick="goToPage(377, 'النمل')">النمل - 377</li>
+<li onclick="goToPage(385, 'القصص')">القصص - 385</li>
+<li onclick="goToPage(396, 'العنكبوت')">العنكبوت - 396</li>
+<li onclick="goToPage(404, 'الروم')">الروم - 404</li>
+<li onclick="goToPage(411, 'لقمان')">لقمان - 411</li>
+<li onclick="goToPage(415, 'السجدة')">السجدة - 415</li>
+<li onclick="goToPage(418, 'الأحزاب')">الأحزاب - 418</li>
+<li onclick="goToPage(434, 'سبأ')">سبأ - 434</li>
+<li onclick="goToPage(440, 'فاطر')">فاطر - 440</li>
+<li onclick="goToPage(446, 'يس')">يس - 446</li>
+<li onclick="goToPage(453, 'الصافات')">الصافات - 453</li>
+<li onclick="goToPage(458, 'ص')">ص - 458</li>
+<li onclick="goToPage(467, 'الزمر')">الزمر - 467</li>
+<li onclick="goToPage(477, 'غافر')">غافر - 477</li>
+<li onclick="goToPage(483, 'فصلت')">فصلت - 483</li>
+<li onclick="goToPage(489, 'الشورى')">الشورى - 489</li>
+<li onclick="goToPage(494, 'الزخرف')">الزخرف - 494</li>
+<li onclick="goToPage(499, 'الدخان')">الدخان - 499</li>
+<li onclick="goToPage(501, 'الجاثية')">الجاثية - 501</li>
+<li onclick="goToPage(504, 'الأحقاف')">الأحقاف - 504</li>
+<li onclick="goToPage(507, 'محمد')">محمد - 507</li>
+<li onclick="goToPage(511, 'الفتح')">الفتح - 511</li>
+<li onclick="goToPage(515, 'الحجرات')">الحجرات - 515</li>
+<li onclick="goToPage(517, 'ق')">ق - 517</li>
+<li onclick="goToPage(520, 'الذاريات')">الذاريات - 520</li>
+<li onclick="goToPage(523, 'الطور')">الطور - 523</li>
+<li onclick="goToPage(526, 'النجم')">النجم - 526</li>
+<li onclick="goToPage(528, 'القمر')">القمر - 528</li>
+<li onclick="goToPage(531, 'الرحمن')">الرحمن - 531</li>
+<li onclick="goToPage(534, 'الواقعة')">الواقعة - 534</li>
+<li onclick="goToPage(537, 'الحديد')">الحديد - 537</li>
+<li onclick="goToPage(542, 'المجادلة')">المجادلة - 542</li>
+<li onclick="goToPage(545, 'الحشر')">الحشر - 545</li>
+<li onclick="goToPage(549, 'الممتحنة')">الممتحنة - 549</li>
+<li onclick="goToPage(551, 'الصف')">الصف - 551</li>
+<li onclick="goToPage(553, 'الجمعة')">الجمعة - 553</li>
+<li onclick="goToPage(554, 'المنافقون')">المنافقون - 554</li>
+<li onclick="goToPage(556, 'التغابن')">التغابن - 556</li>
+<li onclick="goToPage(558, 'الطلاق')">الطلاق - 558</li>
+<li onclick="goToPage(560, 'التحريم')">التحريم - 560</li>
+<li onclick="goToPage(562, 'الملك')">الملك - 562</li>
+<li onclick="goToPage(564, 'القلم')">القلم - 564</li>
+<li onclick="goToPage(566, 'الحاقة')">الحاقة - 566</li>
+<li onclick="goToPage(568, 'المعارج')">المعارج - 568</li>
+<li onclick="goToPage(570, 'نوح')">نوح - 570</li>
+<li onclick="goToPage(572, 'الجن')">الجن - 572</li>
+<li onclick="goToPage(574, 'المزمل')">المزمل - 574</li>
+<li onclick="goToPage(575, 'المدثر')">المدثر - 575</li>
+<li onclick="goToPage(577, 'القيامة')">القيامة - 577</li>
+<li onclick="goToPage(578, 'الإنسان')">الإنسان - 578</li>
+<li onclick="goToPage(580, 'المرسلات')">المرسلات - 580</li>
+<li onclick="goToPage(582, 'النبأ')">النبأ - 582</li>
+<li onclick="goToPage(583, 'النازعات')">النازعات - 583</li>
+<li onclick="goToPage(585, 'عبس')">عبس - 585</li>
+<li onclick="goToPage(586, 'التكوير')">التكوير - 586</li>
+<li onclick="goToPage(587, 'الانفطار')">الانفطار - 587</li>
+<li onclick="goToPage(587, 'المطففين')">المطففين - 587</li>
+<li onclick="goToPage(589, 'الانشقاق')">الانشقاق - 589</li>
+<li onclick="goToPage(590, 'البروج')">البروج - 590</li>
+<li onclick="goToPage(591, 'الطارق')">الطارق - 591</li>
+<li onclick="goToPage(591, 'الأعلى')">الأعلى - 591</li>
+<li onclick="goToPage(592, 'الغاشية')">الغاشية - 592</li>
+<li onclick="goToPage(593, 'الفجر')">الفجر - 593</li>
+<li onclick="goToPage(594, 'البلد')">البلد - 594</li>
+<li onclick="goToPage(595, 'الشمس')">الشمس - 595</li>
+<li onclick="goToPage(595, 'الليل')">الليل - 595</li>
+<li onclick="goToPage(596, 'الضحى')">الضحى - 596</li>
+<li onclick="goToPage(596, 'الشرح')">الشرح - 596</li>
+<li onclick="goToPage(597, 'التين')">التين - 597</li>
+<li onclick="goToPage(597, 'العلق')">العلق - 597</li>
+<li onclick="goToPage(598, 'القدر')">القدر - 598</li>
+<li onclick="goToPage(598, 'البينة')">البينة - 598</li>
+<li onclick="goToPage(599, 'الزلزلة')">الزلزلة - 599</li>
+<li onclick="goToPage(599, 'العاديات')">العاديات - 599</li>
+<li onclick="goToPage(600, 'القارعة')">القارعة - 600</li>
+<li onclick="goToPage(601, 'التكاثر')">التكاثر - 601</li>
+<li onclick="goToPage(601, 'العصر')">العصر - 601</li>
+<li onclick="goToPage(601, 'الهمزة')">الهمزة - 601</li>
+<li onclick="goToPage(602, 'الفيل')">الفيل - 602</li>
+<li onclick="goToPage(602, 'قريش')">قريش - 602</li>
+<li onclick="goToPage(602, 'الماعون')">الماعون - 602</li>
+<li onclick="goToPage(603, 'الكوثر')">الكوثر - 603</li>
+<li onclick="goToPage(603, 'الكافرون')">الكافرون - 603</li>
+<li onclick="goToPage(603, 'النصر')">النصر - 603</li>
+<li onclick="goToPage(604, 'المسد')">المسد - 604</li>
+<li onclick="goToPage(604, 'الإخلاص')">الإخلاص - 604</li>
+<li onclick="goToPage(604, 'الفلق')">الفلق - 604</li>
+<li onclick="goToPage(604, 'الناس')">الناس - 604</li>
+</ul>
+
+
+    </div>
+
+    <div class="container">
+        <h2>📜 الملاحظات</h2>
+        <div class="note">✨ أذكار الصباح والمساء تفتح لك أبواب الخير.</div>
+        <div class="note">🌿 الاستغفار دواء القلوب، فلا تهمل ذكر الله.</div>
+        <div class="note">📖 خصص وقتًا لقراءة القرآن يوميًا، ولو صفحة واحدة.</div>
+        <div class="note">🤲 الدعاء هو سلاح المؤمن في السراء والضراء.</div>
+        <div class="note">🔢 اجعل التسبيح عادة في يومك، فهو يملأ الميزان حسنات.</div>
+    </div>
+
+    <script>
+        let currentPage = localStorage.getItem('currentPage') || 1;
+
+        window.onload = function() {
+            showPage(currentPage);
+        };
+
+        function showPage(pageNumber) {
+            const imageContainer = document.getElementById('pageImageContainer');
+            const imageUrl = `https://quran.ksu.edu.sa/png_big/${pageNumber}.png`;
+
+            localStorage.setItem('currentPage', pageNumber);
+
+            imageContainer.innerHTML = `<img src="${imageUrl}" alt="صفحة ${pageNumber}" style="max-width: 100%; height: auto;" loading="lazy" />`;
+        }
+
+        function loadPage() {
+            const pageNumber = document.getElementById('pageNumber').value;
+            if (pageNumber) {
+                currentPage = parseInt(pageNumber);
+                showPage(currentPage);
+            }
+        }
+
+        function navigatePage(direction) {
+            currentPage = parseInt(currentPage) + direction;
+            if (currentPage < 1) currentPage = 1;
+            showPage(currentPage);
+        }
+
+
+
+        function toggleIndex() {
+            const indexList = document.getElementById('indexList');
+            indexList.style.display = (indexList.style.display === 'none' || indexList.style.display === '') ? 'block' : 'none';
+        }
+
+        function goToPage(pageNumber, surahName) {
+            const confirmNavigation = confirm(`هل تريد الذهاب إلى الصفحة ${pageNumber} (${surahName})؟`);
+            if (confirmNavigation) {
+                currentPage = pageNumber;
+                showPage(currentPage);
+                toggleIndex();
+            }
+        }
+        function resetPage() {
+            const confirmReset = confirm("هل أنت متأكد أنك تريد إعادة تعيين الصفحة؟ ستتم العودة إلى الصفحة الأولى.");
+            if (confirmReset) {
+                localStorage.removeItem('currentPage');
+                currentPage = 1;
+                showPage(currentPage);
+            }
+        }
+        function loadPage() {
+    const pageNumber = document.getElementById('pageNumber').value;
+    if (pageNumber && pageNumber >= 1 && pageNumber <= 604) {
+        currentPage = parseInt(pageNumber);
+        showPage(currentPage);
+    } else {
+        alert("يرجى إدخال رقم صفحة صالح بين 1 و 604.");
+    }
+}
+function showPage(pageNumber) {
+    const imageContainer = document.getElementById('pageImageContainer');
+    imageContainer.style.opacity = 0; // إعداد التلاشي
+    setTimeout(() => {
+        const imageUrl = `https://quran.ksu.edu.sa/png_big/${pageNumber}.png`;
+        imageContainer.innerHTML = `<img src="${imageUrl}" alt="صفحة ${pageNumber}" style="max-width: 100%; height: auto;" loading="lazy" />`;
+        imageContainer.style.opacity = 1; // إعادة التلاشي
+    }, 500); // التأخير لتطبيق التأثير
+}
+        function goToHome() {
+            window.location.href = 'index.html'; // إعادة التوجيه إلى صفحة index.html
+        }
+    </script>
+</body>
+</html>
