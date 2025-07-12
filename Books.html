@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>الكتب الدينية - نهج الشيعة</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+</head>
+<body class="bg-gray-100 text-gray-900">
+
+  <div class="container mx-auto p-6">
+    <h1 class="text-3xl font-bold text-center mb-6">📚 الكتب الدينية</h1>
+
+    <input type="text" id="bookSearch" placeholder="ابحث عن كتاب..." class="w-full p-3 mb-6 border rounded shadow" />
+<div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 rounded shadow mb-4" role="alert">
+  <p class="font-bold">✨</p>
+  <p>السلام عليكم ...... اهلا بكم في هذه الصفحة من موقع نهج الشيعة 📿</p>
+    <p>هذه الصفحة تحتوي على مجموعة من الكتب الدينية التي يمكنكم قراءتها أو تحميلها.</p>
+    <p>هذه الكتب مأخوذة من بعض المكتبات الالكترونية</p>
+    <p>يمكنكم البحث عن الكتب باستخدام شريط البحث أعلاه.</p>
+    <p>إذا كان لديكم أي اقتراحات أو استفسارات، لا تترددوا في التواصل معنا.</p>
+    <p>نسأل الله أن ينفعنا وإياكم بما فيه الخير والصلاح.</p>
+    <p>والسلام عليكم ورحمة الله وبركاته.</p>
+</div>
+    <ul id="bookList" class="space-y-6">
+      <!-- سيتم ملء الكتب هنا -->
+    </ul>
+
+    <div class="mt-10 text-center">
+      <a href="index.html" class="text-blue-600 hover:underline">🔙 العودة إلى الصفحة الرئيسية</a>
+    </div>
+  </div>
+
+  <script>
+    const books = [
+      {
+        title: "ثواب الاعمال وعقاب الاعمال",
+        file: "ثواب الاعمال وعقاب الاعمال.pdf",
+        description: "كتاب يتناول ثواب الأعمال وعقابها وفقًا للتعاليم الإسلامية، ويشمل أحاديث نبوية شريفة.",
+      },
+      {
+    title: "روائع القصص السيد_محمد رضا الشيرازي",
+    file: "روائع القصص السيد_محمد رضا الشيرازي.pdf",
+    description: "مجموعة من القصص الإسلامية التي تحمل عبرًا ودروسًا مستفادة من حياة الأنبياء والأولياء.",
+  },
+    {
+    title: "خمسة الالاف حكمة من حكم الامام علي",
+    file: "خمسة الالاف حكمة من حكم الامام علي.pdf",
+    description: "مجموعة من الحكم والأقوال المأثورة عن الإمام علي بن أبي طالب، تتناول مواضيع الحكمة والأخلاق.",
+  },
+    {
+    title: "",
+    file: "",
+    description: ""
+  },
+
+      {
+    title: "",
+    file: "",
+    description: ""
+  },
+    {
+    title: "",
+    file: "",
+    description: ""
+  },
+    {
+    title: "",
+    file: "",
+    description: ""
+  },
+    {
+    title: "ض",
+    file: "",
+    description: ""
+  },
+  
+    ];
+
+    function renderBooks(filter = "") {
+      const list = document.getElementById("bookList");
+      list.innerHTML = "";
+
+      const filtered = books.filter(book =>
+        book.title.toLowerCase().includes(filter.toLowerCase())
+      );
+
+      if (filtered.length === 0) {
+        list.innerHTML = `<li class="text-center text-gray-500">لا توجد كتب مطابقة للبحث.</li>`;
+        return;
+      }
+
+      filtered.forEach(book => {
+        const li = document.createElement("li");
+        li.className = "bg-white p-5 rounded shadow";
+
+        li.innerHTML = `
+          <h2 class="text-xl font-semibold mb-2">${book.title}</h2>
+          <p class="text-sm text-gray-600 mb-3">${book.description}</p>
+          <div class="space-x-2 space-x-reverse">
+            <a href="${book.file}" target="_blank" class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">📖 عرض</a>
+            <a href="${book.file}" download class="bg-green-600 text-white px-4 py-2 rounded hover:bg-green-700">⬇️ تحميل</a>
+          </div>
+        `;
+        list.appendChild(li);
+      });
+    }
+
+    document.getElementById("bookSearch").addEventListener("input", function () {
+      renderBooks(this.value);
+    });
+
+    renderBooks();
+  </script>
+
+</body>
+</html>
